@@ -64,6 +64,8 @@ Module.register("MMM-AirStats", {
 			divTempData.className 	+= this.getFineDustLevelClass( enLeft, value );
 		} else if ( "CO²" === enLeft ) {
 			divTempData.className 	+= this.getCo2LevelClass( value );
+		} else if ( "CH2O" === enLeft ) {
+			divTempData.className 	+= this.getFormaldehydeLevelClass( value );
 		}
 		divTempRoot.appendChild( divTempData );
 
@@ -106,6 +108,18 @@ Module.register("MMM-AirStats", {
 		}
 	},
 
+	getFormaldehydeLevelClass: function(value) {
+		if ( value <= 48 ) {
+			return " FORMALDEHYDE_GOOD";
+		} else if ( 49 <= value  && value <= 60 ) {
+			return " FORMALDEHYDE_NORMAL";
+		} else if ( 61 <= value  && value <= 100 ) {
+			return " FORMALDEHYDE_BAD";
+		} else if ( 101 <= value ) {
+			return " FORMALDEHYDE_VERY_BAD";
+		}
+	},
+
 	// Override dom generator
 	getDom: function() {
 		var wrapper = document.createElement("div");
@@ -135,7 +149,7 @@ Module.register("MMM-AirStats", {
 
 		// mg/㎥ = ppm x [분자량 ÷ 22.4]
 		// 포름알데히드 분자량: 30
-		var divFormaldehydeRoot 	= this.addAirStatComponent("포름알데히드", "CH2O", "mg/m³", this.formaldehyde);
+		var divFormaldehydeRoot 	= this.addAirStatComponent("포름알데히드", "CH2O", "μg/m³", this.formaldehyde * 1000);
 		wrapper.appendChild( divFormaldehydeRoot );
 
 		var divCo2Root 	= this.addAirStatComponent("이산화탄소", "CO²", "ppm", this.co2);
