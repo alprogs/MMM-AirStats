@@ -1,0 +1,55 @@
+.MMM-AIRSTAT_COMPONENT_P {
+	margin-top: 0px;
+	margin-bottom: 15px;
+}
+
+.MMM-AIRSTAT_COMPONENT_TITLE {
+	display: block;
+	text-align: left;
+	font-size: 15px;
+	margin-bottom: -25px;
+}
+
+.MMM-AIRSTAT_COMPONENT_SUB_TITLE {
+	display: block;
+	font-size: 30px;
+}
+
+.MMM-AIRSTAT_COMPONENT_SUB_TITLE_LEFT {
+	display: inline-block;
+	text-align: left;
+	float: left;
+}
+
+.MMM-AIRSTAT_COMPONENT_SUB_TITLE_RIGHT {
+	display: inline-block;
+	text-align: right;
+}
+
+.MMM-AIRSTAT_COMPONENT_DATA {
+	display: block;
+	text-align: right;
+	font-size: 60px;
+	margin-top: 0;
+}
+
+.FIND_DUST_GOOD,
+.CO2_GOOD {
+	color: #00B0F0;
+}
+
+.FIND_DUST_NORMAL,
+.CO2_NORMAL {
+	color: #00B050;
+}
+
+.FIND_DUST_BAD,
+.CO2_BAD {
+	color: #FFC000;
+}
+
+.FIND_DUST_VERY_BAD,
+.CO2_VERY_BAD {
+	color: #FF0000;
+}
+
