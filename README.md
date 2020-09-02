@@ -1,6 +1,8 @@
 # MMM-AirStats
 Additional Module for MagicMirror²  https://github.com/alprogs/MMM-AirStats
 
+<img src="https://user-images.githubusercontent.com/27263609/91960800-4edf3a00-ed45-11ea-926b-4eadc27afbe5.PNG">
+
 ## Dependencies
 An installation of [MagicMirror<sup>2</sup>](https://github.com/MichMich/MagicMirror)
 
