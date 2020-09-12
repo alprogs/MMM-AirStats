@@ -1,0 +1,75 @@
+.MMM-AIRSTAT_COMPONENT_P {
+	margin-top: 0px;
+	margin-bottom: 15px;
+	text-shadow: -1px 0 gray, 0 1px gray, 1px 0 gray, 0 -1px gray;
+}
+
+.MMM-AIRSTAT_COMPONENT_TITLE {
+	display: block;
+	text-align: left;
+	font-size: 17px;
+	margin-bottom: -25px;
+}
+
+.MMM-AIRSTAT_COMPONENT_SUB_TITLE {
+	display: block;
+	font-size: 32px;
+}
+
+.MMM-AIRSTAT_COMPONENT_SUB_TITLE_LEFT {
+	display: inline-block;
+	text-align: left;
+	float: left;
+}
+
+.MMM-AIRSTAT_COMPONENT_SUB_TITLE_RIGHT {
+	display: inline-block;
+	text-align: right;
+}
+
+.MMM-AIRSTAT_COMPONENT_DATA {
+	display: block;
+	text-align: right;
+	font-size: 60px;
+	margin-top: 0;
+	font-weight: bold;
+}
+
+.LEVEL_GOOD {
+	color: #6FDE1D;
+}
+
+.LEVEL_NORMAL {
+	color: #B0E319;
+}
+
+.LEVEL_BAD {
+	color: #F7E31B;
+}
+
+.LEVEL_VERY_BAD {
+	color: #FD7400;
+}
+
+.LEVEL_ICON {
+	float: left;
+	margin-top: -8px;
+	/* margin-left: 15px; */
+	height: 60px;
+	width: 60px;
+
+	animation: ani 3s ease-in-out infinite alternate;
+}
+
+@keyframes ani {
+	0% {
+		/*transform: translate(-15px, 0) rotate(-15deg) ;*/
+		transform: rotate(-15deg) ;
+	}
+
+	100% {
+		/*transform: translate(15px, 0) rotate(15deg) ;*/
+		transform: rotate(15deg) ;
+	}
+}
+

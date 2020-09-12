@@ -6,7 +6,7 @@ Module.register("MMM-AirStats", {
 	
 	// style
 	getStyles: function() {
-		return ['MMM-AirStats.css'];
+		return ['modules/MMM-AirStats/css/MMM-AirStats.css'];
 	},
 
 	// define sstart sequence 
@@ -60,13 +60,32 @@ Module.register("MMM-AirStats", {
 		var divTempData 	= document.createElement("div");
 		divTempData.innerHTML 	= value;
 		divTempData.className	= "MMM-AIRSTAT_COMPONENT_DATA";
+
+		let levelClassName 	= "";
 		if (fineDustType.includes( enLeft )) {
-			divTempData.className 	+= this.getFineDustLevelClass( enLeft, value );
+			levelClassName 	+= this.getFineDustLevelClass( enLeft, value );
 		} else if ( "CO²" === enLeft ) {
-			divTempData.className 	+= this.getCo2LevelClass( value );
+			levelClassName 	+= this.getCo2LevelClass( value );
 		} else if ( "CH2O" === enLeft ) {
-			divTempData.className 	+= this.getFormaldehydeLevelClass( value );
+			levelClassName 	+= this.getFormaldehydeLevelClass( value );
 		}
+
+		if (levelClassName.length > 0) {
+			var divTempLvlIcon 	= document.createElement("img");
+			if (levelClassName.endsWith("GOOD")) {
+				divTempLvlIcon.src 	= "modules/MMM-AirStats/images/good.png";
+			} else if (levelClassName.endsWith("NORMAL")) {
+				divTempLvlIcon.src 	= "modules/MMM-AirStats/images/normal.png";
+			} else if (levelClassName.endsWith("VERY_BAD")) {
+				divTempLvlIcon.src 	= "modules/MMM-AirStats/images/very_bad.png";
+			} else if (levelClassName.endsWith("BAD")) {
+				divTempLvlIcon.src 	= "modules/MMM-AirStats/images/bad.png";
+			}
+			divTempLvlIcon.className 	= "LEVEL_ICON";
+			divTempRoot.appendChild( divTempLvlIcon );
+		}
+				
+		divTempData.className 	+= levelClassName;
 		divTempRoot.appendChild( divTempData );
 
 		return divTempRoot; //wrapper.appendChild( divTempRoot );
@@ -75,48 +94,48 @@ Module.register("MMM-AirStats", {
 	getFineDustLevelClass: function(size, value) {
 		if ("PM 1.0" === size || "PM 2.5" === size) {
 			if ( value <= 15 ) {
-				return (" FIND_DUST_GOOD");
+				return (" LEVEL_GOOD");
 			} else if ( 16 <= value  && value <= 25 ) {
-				return (" FIND_DUST_NORMAL");
+				return (" LEVEL_NORMAL");
 			} else if ( 26 <= value  && value <= 50 ) {
-				return (" FIND_DUST_BAD");
+				return (" LEVEL_BAD");
 			} else if ( 51 <= value ) {
-				return (" FIND_DUST_VERY_BAD");
+				return (" LEVEL_VERY_BAD");
 			}
 		} else if ("PM 10.0" === size) {
 			if ( value <= 30 ) {
-				return (" FIND_DUST_GOOD");
+				return (" LEVEL_GOOD");
 			} else if ( 31 <= value  && value <= 50 ) {
-				return (" FIND_DUST_NORMAL");
+				return (" LEVEL_NORMAL");
 			} else if ( 51 <= value  && value <= 100 ) {
-				return (" FIND_DUST_BAD");
+				return (" LEVEL_BAD");
 			} else if ( 101 <= value ) {
-				return (" FIND_DUST_VERY_BAD");
+				return (" LEVEL_VERY_BAD");
 			}
 		}
 	},
 
 	getCo2LevelClass: function(value) {
 		if ( value <= 700 ) {
-			return " CO2_GOOD";
+			return " LEVEL_GOOD";
 		} else if ( 701 <= value  && value <= 1000 ) {
-			return " CO2_NORMAL";
+			return " LEVEL_NORMAL";
 		} else if ( 1001 <= value  && value <= 2000 ) {
-			return " CO2_BAD";
+			return " LEVEL_BAD";
 		} else if ( 2001 <= value ) {
-			return " CO2_VERY_BAD";
+			return " LEVEL_VERY_BAD";
 		}
 	},
 
 	getFormaldehydeLevelClass: function(value) {
 		if ( value <= 48 ) {
-			return " FORMALDEHYDE_GOOD";
+			return " LEVEL_GOOD";
 		} else if ( 49 <= value  && value <= 60 ) {
-			return " FORMALDEHYDE_NORMAL";
+			return " LEVEL_NORMAL";
 		} else if ( 61 <= value  && value <= 100 ) {
-			return " FORMALDEHYDE_BAD";
+			return " LEVEL_BAD";
 		} else if ( 101 <= value ) {
-			return " FORMALDEHYDE_VERY_BAD";
+			return " LEVEL_VERY_BAD";
 		}
 	},
 
@@ -127,10 +146,11 @@ Module.register("MMM-AirStats", {
 
 		if (!this.loaded) {
 			wrapper.innerHTML = "Loading ...";
-			wrapper.className = "dimmed light small";
+			wrapper.className = "bright light medium";
 			return wrapper;
 		}
 
+		//this.sendNotification("SHOW_ALERT",{type:"notification",message:"TADA!!!!",title:"Air Status",timer:15 * 1000})
 	
 		var divTempRoot 	= this.addAirStatComponent("온도", "TEMPERATURE&nbsp;&nbsp;&nbsp;&nbsp;", " ℃", this.temperature);
 		wrapper.appendChild( divTempRoot );
